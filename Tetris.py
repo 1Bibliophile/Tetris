@@ -129,10 +129,24 @@ shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 16
  
  
 class Piece(object):
-    pass
+    def __init__(self, x, y, shape):
+        self.x = x
+        self.y = y
+        self.shape = shape
+        self.color = shape_colors[shapes.index(shape)]
+        self.rotation = 0
+
  
-def create_grid(locked_positions={}):
-    pass
+def create_grid(locked_pos={}):
+    # For each of the 20 rows, there will be 10 different colors
+    grid = [[(0,0,0) for _ in range(10)] for _ in range(20)]
+
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (j, i) in locked_pos[(j, i)]:
+                c = locked_pos[(j, i)]
+                grid[i][j] = c
+    return grid
  
 def convert_shape_format(shape):
     pass
@@ -154,10 +168,10 @@ def draw_grid(surface, row, col):
     pass
  
 def clear_rows(grid, locked):
- 
+    pass
  
 def draw_next_shape(shape, surface):
- 
+    pass
  
 def draw_window(surface):
     pass
