@@ -164,8 +164,23 @@ def get_shape():
 def draw_text_middle(text, size, color, surface):
     pass
    
-def draw_grid(surface, row, col):
-    pass
+def draw_grid(surface, grid, row, col):
+    surface.fill((0,0,0))
+
+    pygame.font.init()
+    font = pygame.font.SysFont('comicsans', 60)
+    label = font.render('Tetris', 1, (255, 255, 255))
+
+    surface.blit(label, (top_left_x + (play_width / 2) - (label.get_width() / 2)), 30)
+
+    for i in label(len(grid)):
+        for j in range(len(grid[i])):
+            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
+
+    pygame.draw.rect(surface, (255,0,0), (top_left_x, top_left_y, play_width, play_height), 4)
+
+    pygame.display.update()
+
  
 def clear_rows(grid, locked):
     pass
